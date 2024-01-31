@@ -2,6 +2,8 @@ import { VStack, Image, Text, Box, FormControl, Input, Button, Link } from 'nati
 import { TouchableOpacity } from 'react-native';
 import Logo from './assets/Logo.png';
 import { Title } from './components/Title';
+import { InputText } from './components/InputText';
+import { Bud } from './components/Button';
 
 export default function Login() {
   return (
@@ -12,39 +14,18 @@ export default function Login() {
         Faça login em sua conta
       </Title>
       <Box>
-        <FormControl mt={3}>
-          <FormControl.Label>Email</FormControl.Label>
-          <Input
-            placeholder='Insira seu endereço de email'
-            size='lg'
-            w="100%"
-            borderRadius='lg'
-            bgColor='gray.100'
-            shadow={3}
-          />
-        </FormControl>
-        <FormControl mt={3}>
-          <FormControl.Label>Senha</FormControl.Label>
-          <Input
-            placeholder='Insira sua senha'
-            size='lg'
-            w="100%"
-            borderRadius='lg'
-            bgColor='gray.100'
-            shadow={3}
-          />
-        </FormControl>
+        <InputText
+          label="Email"
+          placeholder="Insira seu endereço de e-mail"
+        />
+        <InputText
+          label="Senha"
+          placeholder="Insira sua senha"
+        />
       </Box>
-      <Button
-        w="100%"
-        bg="blue.800"
-        mt={10}
-        borderRadius="lg"
-      >
-        Entrar
-      </Button>
+      <Bud>Entrar</Bud>
 
-      <Link href='https://www.alura.com.br' mt={2}>
+      <Link href='https://github.com/kayoennrique' mt={2}>
         Esqueceu sua senha?
       </Link>
 
@@ -58,4 +39,4 @@ export default function Login() {
       </Box>
     </VStack>
   );
-}
+};
