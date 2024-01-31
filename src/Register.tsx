@@ -38,7 +38,15 @@ export default function Login() {
   ]
 
   function nextSection() {
-    setNumSection(numSection + 1);
+    if (numSection < sections.length - 1) {
+      setNumSection(numSection + 1)
+    }
+  }
+
+  function backSection() {
+    if (numSection > 0) {
+      setNumSection(numSection - 1)
+    }
   }
 
   return (
@@ -55,7 +63,8 @@ export default function Login() {
           })
         }
       </Box>
-      <Bud onPress={() => nextSection()}>Avançar</Bud>
+      {numSection > 0 && <Bud onPress={() => backSection()} bgColor="gray.400">Voltar</Bud>}
+      <Bud onPress={() => nextSection()} mt={4}>Avançar</Bud>
     </VStack>
   );
 }
