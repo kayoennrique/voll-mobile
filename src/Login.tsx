@@ -49,11 +49,11 @@ export default function Login() {
         Entrar
       </Button>
 
-      <Link href='https://www.alura.com.br'>
+      <Link href='https://www.alura.com.br' mt={2}>
         Esqueceu sua senha?
       </Link>
 
-      <Box w="100%" flexDirection="row" justifyContent="center">
+      <Box w="100%" flexDirection="row" justifyContent="center" mt={8}>
         <Text>Ainda não tem cadastro? </Text>
         <TouchableOpacity>
           <Text color="blue.500">
