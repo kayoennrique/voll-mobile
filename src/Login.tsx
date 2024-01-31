@@ -1,21 +1,16 @@
 import { VStack, Image, Text, Box, FormControl, Input, Button, Link } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import Logo from './assets/Logo.png';
+import { Title } from './components/Title';
 
 export default function Login() {
   return (
     <VStack flex={1} alignItems="center" justifyContent="center" p={5}>
       <Image source={Logo} alt="Logo Voll" />
 
-      <Text
-        fontSize="2xl"
-        fontWeight="bold"
-        color="gray.500"
-        textAlign="center"
-        mt={5}
-      >
+      <Title>
         Faça login em sua conta
-      </Text>
+      </Title>
       <Box>
         <FormControl mt={3}>
           <FormControl.Label>Email</FormControl.Label>
