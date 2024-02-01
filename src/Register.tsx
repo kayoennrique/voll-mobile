@@ -6,7 +6,7 @@ import { InputText } from './components/InputText';
 import { Title } from './components/Title';
 import { sections } from './utils/RegistrationEntryText';
 
-export default function Login() {
+export default function Register() {
   const [numSection, setNumSection] = useState(0);
 
   function nextSection() {
