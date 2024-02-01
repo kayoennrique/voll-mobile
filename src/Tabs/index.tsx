@@ -6,59 +6,58 @@ import Queries from "./Queries";
 import Explore from "./Explore";
 import Profile from "./Profile";
 
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator();
+
+const screensOptions = {
+  tabBarStyle: {
+    backgroundColor: "#002851"
+  },
+  tabBarActiveTintColor: "#339cff",
+  tabBarInactiveTintColor: "#FFF"
+};
+
+const tabs = [
+  {
+    name: 'Principal',
+    component: Main,
+    icon: 'home'
+  },
+  {
+    name: 'Consultas',
+    component: Queries,
+    icon: 'calendar'
+  },
+  {
+    name: 'Explorar',
+    component: Explore,
+    icon: 'search'
+  },
+  {
+    name: 'Perfil',
+    component: Profile,
+    icon: 'person'
+  },
+];
 
 export default function Tabs() {
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: "#002851"
-        },
-        tabBarActiveTintColor: "#339cff",
-        tabBarInactiveTintColor: "#FFF"
-      }}
+      screenOptions={screensOptions}
     >
-      <Tab.Screen
-        name="Home"
-        component={Main}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
-          )
-        }}
-      />
-      <Tab.Screen
-        name="Explorar"
-        component={Explore}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" color={color} size={size} />
-          )
-        }}
-      />
-      <Tab.Screen
-        name="Perfil"
-        component={Profile}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" color={color} size={size} />
-          )
-        }}
-      />
-      <Tab.Screen
-        name="Consultas"
-        component={Queries}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="calendar" color={color} size={size} />
-          )
-        }}
-      />
+      {tabs.map((tab) => (
+        <Tab.Screen
+          key={tab.name}
+          name={tab.name}
+          component={tab.component}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name={tab.icon} color={color} size={size} />
+            )
+          }}
+        />
+      ))
+      }
     </Tab.Navigator>
   );
 }
