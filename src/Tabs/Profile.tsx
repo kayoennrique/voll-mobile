@@ -13,7 +13,7 @@ export default function Profile() {
         />
         <Title color="blue.500">Informações pessoais</Title>
         <Title fontSize="lg" mb={1}>Kayo Ennrique</Title>
-        <Title>30/06</Title>
+        <Title>30/06/1992</Title>
         <Title>Rio de Janeiro - RJ</Title>
         <Divider mt={5} />
         <Title color="blue.500" mb={1}>Histórico médico</Title>
