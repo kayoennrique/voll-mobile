@@ -7,12 +7,14 @@ interface CardProps {
   date?: string;
   wasAnswered?: boolean;
   wasScheduled?: boolean;
+  source: string;
 }
 
 export function CardConsultation({
   name,
   specialty,
   date,
+  source,
   wasAnswered,
   wasScheduled
 }: CardProps) {
