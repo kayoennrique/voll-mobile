@@ -23,7 +23,7 @@ export default function Login({ navigation }) {
           placeholder="Insira sua senha"
         />
       </Box>
-      <Bud>Entrar</Bud>
+      <Bud onPress={() => navigation.navigate('Tabs')}>Entrar</Bud>
 
       <Link href='https://github.com/kayoennrique' mt={2}>
         Esqueceu sua senha?
