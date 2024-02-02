@@ -6,8 +6,9 @@ import { InputText } from './components/InputText';
 import { Title } from './components/Title';
 import { sections } from './utils/RegistrationEntryText';
 import { registerPatient } from './services/PatientService';
+import { NavigationProps } from './@types/navigation';
 
-export default function Register({ navigation }: any) {
+export default function Register({ navigation }: NavigationProps<'Cadastro'>) {
   const [numSection, setNumSection] = useState(0);
   const [data, setData] = useState({} as any);
   const [plans, setPlans] = useState([] as number[]);
@@ -58,7 +59,7 @@ export default function Register({ navigation }: any) {
         description: 'Você já pode fazer login',
         backgroundColor: 'green.500',
       });
-      navigation.raplace('Login')
+      navigation.replace('Login')
     }
     else {
       toast.show({

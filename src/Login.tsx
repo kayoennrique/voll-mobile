@@ -1,40 +1,46 @@
-import { VStack, Image, Text, Box, Link, useToast } from 'native-base';
+import { VStack, Image, Text, Box, Link, useToast } from 'native-base'
 import { TouchableOpacity } from 'react-native';
-import Logo from './assets/Logo.png';
-import { Title } from './components/Title';
-import { InputText } from './components/InputText';
+import Logo from './assets/Logo.png'
 import { Bud } from './components/Button';
+import { InputText } from './components/InputText';
+import { Title } from './components/Title';
 import { useEffect, useState } from 'react';
 import { toDoLogin } from './services/AuthenticationService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwtDecode from 'jwt-decode';
+import { NavigationProps } from './@types/navigation';
 
-export default function Login({ navigation }: any) {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [loading, setLoading] = useState(true);
-  const toast = useToast();
+export default function Login({ navigation }: NavigationProps<'Login'>) {
+  const [email, setEmail] = useState('')
+  const [senha, setSenha] = useState('')
+  const [loading, setLoading] = useState(true)
+  const toast = useToast()
 
   useEffect(() => {
     async function checkLogin() {
       const token = await AsyncStorage.getItem('token')
       if (token) {
-        navigation.replace('Tabs');
+        navigation.replace('Tabs')
       }
-      setLoading(false);
+      setLoading(false)
     }
-    checkLogin();
+    checkLogin()
   }, [])
 
+  interface TokenProps {
+    token: string;
+    id: string;
+  }
+
   async function login() {
-    const result = await toDoLogin(email, senha);
-    if (result) {
-      const { token } = result;
+    const resultado = await toDoLogin(email, senha)
+    if (resultado) {
+      const { token } = resultado
       AsyncStorage.setItem('token', token)
 
-      const decodeToken = jwtDecode(token) as any
-      const patientId = decodeToken.id
-      AsyncStorage.setItem('patientId', patientId)
+      const tokenDecodificado = jwtDecode(token) as TokenProps
+      const pacienteId = tokenDecodificado.id
+      AsyncStorage.setItem('pacienteId', pacienteId)
       navigation.replace('Tabs')
     }
     else {
@@ -44,11 +50,12 @@ export default function Login({ navigation }: any) {
         backgroundColor: "red.500"
       })
     }
-  };
+  }
 
   if (loading) {
     return null
   }
+
   return (
     <VStack flex={1} alignItems="center" justifyContent="center" p={5}>
       <Image source={Logo} alt="Logo Voll" />
@@ -73,13 +80,13 @@ export default function Login({ navigation }: any) {
       </Box>
       <Bud onPress={login}>Entrar</Bud>
 
-      <Link href='https://github.com/kayoennrique' mt={2}>
+      <Link href='https://www.github.com/kayoennrique' mt={2}>
         Esqueceu sua senha?
       </Link>
 
       <Box w="100%" flexDirection="row" justifyContent="center" mt={8}>
         <Text>Ainda não tem cadastro? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
           <Text color="blue.500">
             Faça seu cadastro!
           </Text>
@@ -87,4 +94,4 @@ export default function Login({ navigation }: any) {
       </Box>
     </VStack>
   );
-};
+}

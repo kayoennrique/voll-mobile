@@ -1,39 +1,31 @@
-import { Text, Avatar, VStack } from 'native-base';
-import { Bud } from './Button';
+import { Text, Avatar, VStack } from 'native-base'
+import { Bud } from './Button'
 
 interface CardProps {
-  name: string;
-  specialty: string;
-  date?: string;
+  nome: string;
+  foto: string;
+  especialidade: string;
+  data?: string;
   wasAnswered?: boolean;
   wasScheduled?: boolean;
-  source: string;
 }
 
 export function CardConsultation({
-  name,
-  specialty,
-  date,
-  source,
-  wasAnswered,
-  wasScheduled
+  nome,
+  foto,
+  data,
+  especialidade,
+  wasScheduled,
+  wasAnswered
 }: CardProps) {
-  const image = require('./assets/clerian.jpg');
   return (
-    <VStack
-      w="100%"
-      bg={wasAnswered ? 'blue.100' : 'white'}
-      p="5"
-      borderRadius="lg"
-      shadow="2"
-      mb={5}
-    >
+    <VStack w="100%" bg={wasAnswered ? 'blue.100' : 'white'} p="5" borderRadius="lg" shadow="2" mb={5}>
       <VStack flexDir="row">
-        <Avatar size="xl" source={image} />
+        <Avatar size="lg" source={{ uri: foto }} />
         <VStack pl="4">
-          <Text fontSize="md" bold>{name}</Text>
-          <Text>{specialty}</Text>
-          <Text>{date}</Text>
+          <Text fontSize="md" bold>{nome}</Text>
+          <Text>{especialidade}</Text>
+          <Text>{data}</Text>
         </VStack>
       </VStack>
       <Bud mt={4}>

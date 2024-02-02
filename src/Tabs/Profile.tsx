@@ -5,8 +5,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getPatientData } from '../services/PatientService'
 import { Patient } from '../interfaces/Patient'
 import { Bud } from '../components/Button'
+import { NavigationProps } from '../@types/navigation'
 
-export default function Profile({ navigation }: any) {
+export default function Profile({ navigation }: NavigationProps<'Perfil'>) {
   const [dataPatient, setDataPatient] = useState({} as Patient)
 
   useEffect(() => {
