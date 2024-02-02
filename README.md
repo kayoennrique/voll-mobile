@@ -1,6 +1,6 @@
 # Voll
 
-An application for medical consultations using Native Base and TypeScript in React Native.
+An application for medical consultations using Native Base and TypeScript in React Native. Integration with a Web API is done using Axios.
 
 ## 🔨 Application features
 
@@ -14,10 +14,11 @@ The technologies and tools used in this application include:
 - TypeScript: strongly typed programming language
 - Expo: application development platform for React Native
 - React Native: framework for developing applications for mobile platforms
+- Axios: a Promises-based HTTP client used to make requests
 
 ## 🎯 Challenge
 
-Use the Native Base and TypeScript library to create an application for medical consultations.
+Integrate with a Web API using Axios.
 
 ## 📁 Access to the project
 
