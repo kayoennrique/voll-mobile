@@ -9,6 +9,7 @@ import { sections } from './utils/RegistrationEntryText';
 export default function Register() {
   const [numSection, setNumSection] = useState(0);
   const [data, setData] = useState({} as any);
+  const [plans, setPlans] = useState([] as number[]);
 
   function nextSection() {
     if (numSection < sections.length - 1) {
@@ -16,7 +17,7 @@ export default function Register() {
     }
     else {
       console.log(data);
-
+      console.log(checkbox);
     }
   }
 
@@ -54,14 +55,33 @@ export default function Register() {
         }
       </Box>
       <Box>
-        <Text color="blue.800" fontWeight="bold" fontSize="md" mt="2" mb={2}>
+        {numSection == 2 && <Text
+          color="blue.800"
+          fontWeight="bold"
+          fontSize="md"
+          mt="2"
+          mb={2}
+        >
           Selecione o plano:
-        </Text>
+        </Text>}
         {
           sections[numSection].checkbox.map(checkbox => {
-            return <Checkbox key={checkbox.id} value={checkbox.value}>
-              {checkbox.value}
-            </Checkbox>
+            return (
+              <Checkbox
+                key={checkbox.id}
+                value={checkbox.value}
+                onChange={() => {
+                  setPlans((plansPrevious) => {
+                    if (plansPrevious.includes(checkbox.id)) {
+                      return plansPrevious.filter((id) => id !== checkbox.id)
+                    }
+                    return [...plansPrevious, checkbox.id]
+                  })
+                }}
+                isChecked={plans.includes(checkbox.id)}
+              >
+                {checkbox.value}
+              </Checkbox>)
           })
         }
       </Box>
