@@ -124,7 +124,7 @@ export default function Register({ navigation }: any) {
         }
       </Box>
       {numSection > 0 && <Bud onPress={() => backSection()} bgColor="gray.400">Voltar</Bud>}
-      <Bud onPress={() => nextSection()} mt={4} mb={20}>Avançar</Bud>
+      <Bud onPress={() => nextSection()} mt={4} mb={20}>{numSection == 2 ? 'Finalizar' : 'Avançar'}</Bud>
     </ScrollView>
   );
 }
