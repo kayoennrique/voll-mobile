@@ -3,14 +3,17 @@ import { Input, FormControl } from "native-base";
 interface InputProps {
   label?: string;
   placeholder: string;
-  secureTextEntry?: boolean
-  leftIcon?: React.ReactNode;
+  secureTextEntry?: boolean;
+  value?: string;
+  onChangeText?: (text: string) => void;
 }
 
 export function InputText({
   label,
   placeholder,
-  secureTextEntry = false
+  secureTextEntry = false,
+  value,
+  onChangeText
 }: InputProps) {
   return (
     <FormControl mt={3}>
@@ -23,6 +26,8 @@ export function InputText({
         bgColor="gray.100"
         secureTextEntry={secureTextEntry}
         shadow={3}
+        value={value}
+        onChangeText={onChangeText}
       />
     </FormControl>
   );
