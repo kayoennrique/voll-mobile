@@ -1,15 +1,17 @@
-import { Image, Box, Checkbox, ScrollView, Text } from 'native-base';
+import { Image, Box, Checkbox, ScrollView, Text, useToast } from 'native-base';
 import { useState } from 'react';
 import Logo from './assets/Logo.png';
 import { Bud } from './components/Button';
 import { InputText } from './components/InputText';
 import { Title } from './components/Title';
 import { sections } from './utils/RegistrationEntryText';
+import { registerPatient } from './services/PatientService';
 
-export default function Register() {
+export default function Register({ navigation }: any) {
   const [numSection, setNumSection] = useState(0);
   const [data, setData] = useState({} as any);
   const [plans, setPlans] = useState([] as number[]);
+  const toast = useToast()
 
   function nextSection() {
     if (numSection < sections.length - 1) {
@@ -17,7 +19,8 @@ export default function Register() {
     }
     else {
       console.log(data);
-      console.log(checkbox);
+      console.log(plans);
+      register()
     }
   }
 
@@ -29,6 +32,41 @@ export default function Register() {
 
   function dataAtt(id: string, amount: string) {
     setData({ ...data, [id]: amount });
+  }
+
+  async function register() {
+    const result = await registerPatient({
+      cpf: data.cpf,
+      nome: data.nome,
+      email: data.email,
+      endereco: {
+        cep: data.cep,
+        rua: data.rua,
+        numero: data.numero,
+        estado: data.estado,
+        complemento: data.complemento
+      },
+      senha: data.senha,
+      telefone: data.telefone,
+      possuiPlanoSaude: plans.length > 0,
+      planosSaude: plans,
+      imagem: data.imagem
+    });
+    if (result) {
+      toast.show({
+        title: 'Cadastro realizado com sucesso',
+        description: 'Você já pode fazer login',
+        backgroundColor: 'green.500',
+      });
+      navigation.raplace('Login')
+    }
+    else {
+      toast.show({
+        title: 'Erro ao cadastrar',
+        description: 'Verifique os dados e tente novamente',
+        backgroundColor: 'red.500',
+      });
+    }
   }
 
   return (
