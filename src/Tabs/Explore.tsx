@@ -5,6 +5,7 @@ import { InputText } from "../components/InputText";
 import { Title } from "../components/Title";
 import { useState } from "react";
 import { searchSpecialistByState } from "../services/SpecialistService";
+import { NavigationProps } from "../@types/navigation";
 
 interface Specialist {
   nome: string,
@@ -13,7 +14,7 @@ interface Specialist {
   id: string;
 }
 
-export default function Explore() {
+export default function Explore({ navigation}: NavigationProps<'Explorar'>) {
   const [estado, setState] = useState('')
   const [specialty, setSpecialty] = useState('')
   const [resultSearch, setResultSearch] = useState([])
@@ -53,7 +54,10 @@ export default function Explore() {
               especialidade={especialista.especialidade}
               foto={especialista.imagem}
               nome={especialista.nome}
-            // onPress={especialista.id}
+              onPress={() => navigation.navigate('Agendamento', {
+                expertId: especialista.id
+              })}
+                
             />
           </VStack>
         ))}

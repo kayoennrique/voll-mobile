@@ -9,6 +9,7 @@ export type ListaTelas = {
   Consultas: undefined;
   Principal: undefined;
   Tabs: undefined;
+  Agendamento: {expertId: string};
 }
 
 export type NavigationProps<T extends keyof ListaTelas> = {

@@ -24,4 +24,16 @@ export async function getPatientData(id: string) {
     console.log(error);
     return null;
   }
+
 }
+
+export async function getConsultationsPatient(id: string){
+  try {
+    const resultado = await api.get(`/paciente/${id}/consultas`)
+    return resultado.data
+  }
+  catch(error){
+    console.log(error)
+    return null
+  }
+}	
