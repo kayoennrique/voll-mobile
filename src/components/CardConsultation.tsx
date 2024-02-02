@@ -8,6 +8,7 @@ interface CardProps {
   data?: string;
   wasAnswered?: boolean;
   wasScheduled?: boolean;
+  onPress?: () => void;
 }
 
 export function CardConsultation({
@@ -16,7 +17,8 @@ export function CardConsultation({
   data,
   especialidade,
   wasScheduled,
-  wasAnswered
+  wasAnswered,
+  onPress
 }: CardProps) {
   return (
     <VStack w="100%" bg={wasAnswered ? 'blue.100' : 'white'} p="5" borderRadius="lg" shadow="2" mb={5}>
@@ -28,7 +30,7 @@ export function CardConsultation({
           <Text>{data}</Text>
         </VStack>
       </VStack>
-      <Bud mt={4}>
+      <Bud mt={4} onPress={onPress}>
         {wasScheduled ? 'Cancelar' : 'Agendar consulta'}
       </Bud>
     </VStack>
