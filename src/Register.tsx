@@ -8,10 +8,15 @@ import { sections } from './utils/RegistrationEntryText';
 
 export default function Register() {
   const [numSection, setNumSection] = useState(0);
+  const [data, setData] = useState({} as any);
 
   function nextSection() {
     if (numSection < sections.length - 1) {
       setNumSection(numSection + 1)
+    }
+    else {
+      console.log(data);
+
     }
   }
 
@@ -19,6 +24,10 @@ export default function Register() {
     if (numSection > 0) {
       setNumSection(numSection - 1)
     }
+  }
+
+  function dataAtt(id: string, amount: string) {
+    setData({ ...data, [id]: amount });
   }
 
   return (
@@ -31,7 +40,16 @@ export default function Register() {
       <Box>
         {
           sections[numSection]?.inputText?.map(input => {
-            return <InputText label={input.label} placeholder={input.placeholder} key={input.id} />
+            return (
+              <InputText
+                label={input.label}
+                placeholder={input.placeholder}
+                key={input.id}
+                secureTextEntry={input.secureTextEntry}
+                value={data[input.name]}
+                onChangeText={(text) => dataAtt(input.name, text)}
+              />
+            )
           })
         }
       </Box>
