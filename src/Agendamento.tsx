@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Bud } from './components/Button'
 import { scheduleConsultation } from './services/ConsultationService'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { converterStringParaData } from './utils/conversoes'
+import { converterStringParaData } from './utils/conversions'
 
 export default function Agendamento({ route, navigation }: any) {
     const [data, setData] = useState('')
@@ -14,8 +14,8 @@ export default function Agendamento({ route, navigation }: any) {
         const { expertId } = route.params
         if (!patientId || !expertId || !data) return
         const dataFormatada = converterStringParaData(data)
-        const resultado = await scheduleConsultation(dataFormatada, expertId, patientId)
-        if (resultado) {
+        const result = await scheduleConsultation(dataFormatada, expertId, patientId)
+        if (result) {
             toast.show({
                 title: 'Consulta agendada com sucesso',
                 backgroundColor: 'green.500',

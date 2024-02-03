@@ -27,12 +27,12 @@ export async function getPatientData(id: string) {
 
 }
 
-export async function getConsultationsPatient(id: string){
+export async function getConsultationsPatient(id: string) {
   try {
-    const resultado = await api.get(`/paciente/${id}/consultas`)
-    return resultado.data
+    const result = await api.get(`/paciente/${id}/consultas`)
+    return result.data
   }
-  catch(error){
+  catch (error) {
     console.log(error)
     return null
   }

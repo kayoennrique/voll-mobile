@@ -13,3 +13,15 @@ export async function scheduleConsultation(data: Date, expertId: string, patient
     return null;
   }
 }
+
+export async function cancelConsultation(queryId: string) {
+  try {
+    const resulta = await api.delete(`/consulta/${queryId}`)
+    console.log(resulta.data)
+    return resulta.data
+  }
+  catch (error) {
+    console.log(error)
+    return null
+  }
+}
