@@ -12,6 +12,8 @@ export default function Agendamento({ route, navigation }: any) {
     async function agendar() {
         const patientId = await AsyncStorage.getItem('patientId')
         const { expertId } = route.params
+        console.log('EXPERTID', expertId);
+
         if (!patientId || !expertId || !data) return
         const dataFormatada = converterStringParaData(data)
         const result = await scheduleConsultation(dataFormatada, expertId, patientId)

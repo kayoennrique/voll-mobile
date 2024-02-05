@@ -66,7 +66,7 @@ export default function Queries({ navigation }: NavigationProps<'Consultas'>) {
   return (
     <ScrollView p="5">
       <Title color="blue.500">Minhas consultas</Title>
-      <Bud mt={5} mb={5}>Agendar nova consulta</Bud>
+      <Bud mt={5} mb={5} onPress={() => navigation.navigate('Explorar')}>Agendar nova consulta</Bud>
 
       <Title color="blue.500" fontSize="lg" alignSelf="flex-start" mb={2}>Próximas consultas</Title>
       {upcomingConsultations?.map((query) => (
